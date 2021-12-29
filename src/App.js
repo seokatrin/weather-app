@@ -8,7 +8,7 @@ import Temperature from "./Components/Temperature";
 import { Global, media, themes, WrapperApp } from "./StylesComponents/Styles";
 
 function App() {
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState({isLoading: true});
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -29,8 +29,6 @@ function App() {
           .then((response) => {
             const {name, dt: time, main: {temp, feels_like}, sys:{sunrise, sunset}, weather: [{description, icon}], wind: {speed}} = response.data
             setWeather({name, time, temp, feels_like, sunrise, sunset, description, icon, speed})
-            console.log({name, time, temp, feels_like, sunrise, sunset, description, icon, speed})
-
           });
       });
     }
@@ -48,6 +46,10 @@ function App() {
     suntime = getTime(weather.sunrise);
   }
 
+  if(weather.isLoading){
+    return <div></div>
+  }
+
   return (
     <ThemeProvider
       theme={
@@ -59,7 +61,7 @@ function App() {
       <Global />
       <WrapperApp direction="column" justify="space-between" margin="0 auto">
         <Location>{weather.name}</Location>
-        <Temperature icon={weather.icon} temp={temp} />
+        <Temperature icon={weather.icon} temp={temp} description={weather.description} />
         <Addition
           feels_like={feels_like}
           wind={wind}
