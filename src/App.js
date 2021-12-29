@@ -86,7 +86,7 @@ function App() {
 export default App;
 
 function fromKtoC(kelvin) {
-  return (kelvin - 273.15).toFixed(1);
+  return Math.round(kelvin - 273.15);
 }
 function getTime(time) {
   return new Date(time * 1000).toLocaleTimeString().slice(0, -3);
