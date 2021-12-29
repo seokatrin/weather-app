@@ -27,7 +27,6 @@ function App() {
             }
           )
           .then((response) => {
-            // const weather = {name: 'Бердяуш', time: 1640624853, temp: 259.49, feels_like: 252.49, sunrise: 1640579371, sunset: 1640605153, description: 'пасмурно', icon: "04n", speed: 3.95}
             const {name, dt: time, main: {temp, feels_like}, sys:{sunrise, sunset}, weather: [{description, icon}], wind: {speed}} = response.data
             setWeather({name, time, temp, feels_like, sunrise, sunset, description, icon, speed})
             console.log({name, time, temp, feels_like, sunrise, sunset, description, icon, speed})
@@ -35,17 +34,6 @@ function App() {
           });
       });
     }
-    // setWeather({
-    //   name: "Бердяуш",
-    //   time: 1640759330,
-    //   temp: 259.49,
-    //   feels_like: 252.49,
-    //   sunrise: 1640752177,
-    //   sunset: 1640778060,
-    //   description: "пасмурно",
-    //   icon: "04n",
-    //   speed: 3.95,
-    // });
   }, []);
 
   const temp = fromKtoC(weather.temp);
@@ -91,7 +79,3 @@ function fromKtoC(kelvin) {
 function getTime(time) {
   return new Date(time * 1000).toLocaleTimeString().slice(0, -3);
 }
-
-// function fromFToCelcious(fahrenheit) {
-//   return (fahrenheit - 32) * 5 / 9
-// }
