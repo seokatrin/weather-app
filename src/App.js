@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import "./App.css";
 import Addition from "./Components/Addition";
 import Location from "./Components/Location";
 import Temperature from "./Components/Temperature";
